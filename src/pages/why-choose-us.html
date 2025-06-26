@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Choose Us - Kaizen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/App.css">
+    <link rel="stylesheet" href="../styles/why-choose-us.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <script src="../scripts/navigation.js" defer></script>
+</head>
+<body>
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Navigation will be injected here by navigation.js -->
+    <div id="navbar-container"></div>
+
+    <main class="why-choose-us-page">
+        <section id="why-invest" class="why-invest-section fade-in">
+            <div class="container">
+                <h1 class="section-title">Why Invest With Us!</h1>
+                <div class="invest-grid">
+                    <div class="invest-content">
+                        <p>Starting a business today can be met with unprecedented challenges. The tried and true marketing methods from the past often are no longer relevant. Rather than devote your own precious time and energy to researching current marketing trends, you can rely on us to help you figure out how best to launch your start-up.</p>
+                        <p>We help generate numbers that will give you a foundation on which to build your future business. With our skilled sales reps and market expertise, we can help maximize your marketing ROI while helping your sales staff remain committed to closing sales.</p>
+                    </div>
+                    <div class="invest-features">
+                        <div class="invest-card" data-aos="fade-up" data-aos-delay="100">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>Real-time Analysis</h3>
+                            <p>Get real-time analysis to find out where and when you need to improve your numbers.</p>
+                        </div>
+                        <div class="invest-card" data-aos="fade-up" data-aos-delay="200">
+                            <i class="fas fa-users"></i>
+                            <h3>Expert Sales Team</h3>
+                            <p>Fully trained and highly competent sales staff on hand to help you anytime.</p>
+                        </div>
+                        <div class="invest-card" data-aos="fade-up" data-aos-delay="300">
+                            <i class="fas fa-rocket"></i>
+                            <h3>ROI Maximization</h3>
+                            <p>Maximize your marketing ROI while maintaining focus on closing deals.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="why-choose-section">
+            <div class="container">
+                <div class="why-choose-grid">
+                    <div class="why-choose-content" data-aos="fade-right">
+                        <h2>Why Choose Kaizen?</h2>
+                        <p class="lead">We bring together expertise, innovation, and dedication to help your business thrive in today's competitive landscape. Our approach combines proven strategies with cutting-edge solutions.</p>
+                        
+                        <div class="why-choose-features">
+                            <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
+                                <div class="feature-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <h3>Data-Driven Approach</h3>
+                                <p>We base our strategies on solid data and analytics to ensure measurable results.</p>
+                            </div>
+                            
+                            <div class="feature-item" data-aos="fade-up" data-aos-delay="150">
+                                <div class="feature-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h3>Expert Team</h3>
+                                <p>Our team brings years of experience across various industries and technologies.</p>
+                            </div>
+                            
+                            <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
+                                <div class="feature-icon">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <h3>Innovation First</h3>
+                                <p>We stay ahead of trends to provide cutting-edge solutions for your business.</p>
+                            </div>
+                            
+                            <div class="feature-item" data-aos="fade-up" data-aos-delay="250">
+                                <div class="feature-icon">
+                                    <i class="fas fa-handshake"></i>
+                                </div>
+                                <h3>Dedicated Support</h3>
+                                <p>24/7 support and consultation to ensure your success at every step.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="why-choose-image" data-aos="fade-left">
+                        <img src="../assets/images/why-choose-us.jpg" alt="Team collaboration" loading="lazy" width="600" height="400">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer will be injected here by navigation.js -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../scripts/navigation.js"></script>
+    <script src="../scripts/mobile-nav.js"></script>
+    <script>
+        // Initialize AOS
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({
+                duration: 800,
+                once: true,
+                disable: window.innerWidth < 768
+            });
+
+            // Hide loader when everything is loaded
+            const loader = document.querySelector('.loader-wrapper');
+            if (loader) {
+                setTimeout(() => {
+                    loader.classList.add('hidden');
+                    setTimeout(() => {
+                        loader.remove();
+                    }, 300);
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>

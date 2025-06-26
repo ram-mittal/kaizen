@@ -1,0 +1,248 @@
+/* Why Choose Us Page Styles */
+:root {
+    --primary: #166088;
+    --primary-light: #4f9ec9;
+    --secondary: #4a6fa5;
+    --accent: #4fc3f7;
+    --dark: #2c3e50;
+    --light: #f8f9fa;
+    --text: #333;
+    --text-light: #6c757d;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+}
+
+/* Section Styling */
+.why-choose-us-page {
+    padding: 4rem 0;
+    background-color: #fff;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: var(--dark);
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 2px;
+}
+
+/* Why Invest Section */
+.why-invest-section {
+    padding: 6rem 0;
+    background-color: var(--light);
+}
+
+.invest-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.invest-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.invest-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+}
+
+.invest-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.invest-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+    text-align: center;
+}
+
+.invest-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.invest-card i {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    display: inline-block;
+}
+
+.invest-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--dark);
+}
+
+.invest-card p {
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* Why Choose Section */
+.why-choose-section {
+    padding: 6rem 0;
+}
+
+.why-choose-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.why-choose-content h2 {
+    font-size: 2.2rem;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+}
+
+.why-choose-content .lead {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 3rem;
+}
+
+.why-choose-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.feature-item {
+    margin-bottom: 2rem;
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(79, 195, 247, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.feature-icon i {
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.feature-item h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: var(--dark);
+}
+
+.feature-item p {
+    color: var(--text-light);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.why-choose-image {
+    position: relative;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+}
+
+.why-choose-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: var(--transition);
+}
+
+.why-choose-image:hover img {
+    transform: scale(1.03);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .why-choose-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .why-choose-image {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .why-choose-content {
+        text-align: center;
+    }
+    
+    .why-choose-features {
+        justify-content: center;
+    }
+    
+    .feature-item {
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .feature-icon {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .why-choose-features {
+        grid-template-columns: 1fr;
+    }
+    
+    .invest-features {
+        grid-template-columns: 1fr;
+    }
+    
+    .why-invest-section,
+    .why-choose-section {
+        padding: 4rem 0;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}

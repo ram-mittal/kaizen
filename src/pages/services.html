@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Kaizen</title>
+    <link rel="stylesheet" href="../styles/navigation.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/App.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2B3A67;
+            --primary-light: #3A4D7A;
+            --secondary: #4A6FA5;
+            --accent: #166088;
+            --accent-light: #1D7CA7;
+            --light: #F8FAFC;
+            --light-gray: #EFF2F7;
+            --dark: #1B2436;
+            --text: #2D3748;
+            --text-light: #718096;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --gradient-accent: linear-gradient(135deg, var(--accent), var(--accent-light));
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --card-shadow: 0 10px 30px rgba(43, 58, 103, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --border-radius: 12px;
+            --spacing: 2rem;
+        }
+
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: var(--transition);
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            border-top: 5px solid #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing);
+        }
+
+        /* Navigation */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem var(--spacing);
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            opacity: 0.9;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover:after,
+        .nav-links a.active:after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .services-hero {
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+            padding: 10rem 2rem 8rem;
+            margin-top: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.05)" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') bottom/100% auto no-repeat;
+            opacity: 0.5;
+        }
+
+        .services-hero h1 {
+            font-size: 3.5rem;
+            margin: 0 0 1.5rem 0;
+            padding: 0 0 1.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+            display: inline-block;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        
+        /* Services Section */
+        .services-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e6f0ff 100%);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+        
+        .service-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .card-image-wrapper {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover .card-image {
+            transform: scale(1.05);
+        }
+        
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .card-overlay i {
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .card-content {
+            padding: 2rem;
+        }
+        
+        .service-card h3 {
+            color: var(--primary);
+            margin: 0 0 1rem 0;
+            font-size: 1.5rem;
+        }
+        
+        .service-tagline {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+        }
+        
+        .service-features li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.75rem;
+        }
+        
+        .service-features li:before {
+            content: '✓';
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+        }
+        
+        .service-cta {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        
+        .service-cta:hover {
+            background: var(--accent-light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-image-wrapper {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            overflow: hidden;
+        }
+
+
+        .card-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .card-image {
+            transform: scale(1.05);
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .card-overlay {
+            opacity: 1;
+        }
+
+        .card-overlay i {
+            color: white;
+            font-size: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover .card-overlay i {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-content {
+            padding: 1.75rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content h3 {
+            color: var(--primary);
+            margin: 0 0 1rem 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .service-tagline {
+            color: var(--text-light);
+            margin: 0 0 1.25rem 0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+            flex-grow: 1;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding: 0.5rem 0 0.5rem 1.75rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .feature-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            align-self: flex-start;
+            margin-top: auto;
+        }
+
+        .btn-cta:hover {
+            background: var(--gradient-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .services-hero h1:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: white;
+            border-radius: 2px;
+            margin-top: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        /* Main Content */
+        main {
+            padding-top: 2rem;
+            position: relative;
+        }
+
+        .services-section {
+            padding: 2rem 1rem 6rem;
+            position: relative;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .card-image-wrapper {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+            width: 100%;
+            background: linear-gradient(45deg, #f5f7fa, #eef2f7);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+
+        .service-card:hover .card-image {
+            transform: scale(1.05);
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .card-content {
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card h3 {
+            color: var(--primary);
+            font-size: 1.75rem;
+            margin: 0 0 1rem 0;
+            position: relative;
+            padding-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .service-card h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-accent);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .service-card:hover h3:after {
+            width: 70px;
+        }
+
+        .service-tagline {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin: 0 0 1.5rem 0;
+            line-height: 1.6;
+        }
+
+        .service-intro {
+            color: var(--text);
+            margin: 0 0 1.5rem 0;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .service-details {
+            margin: 1.5rem 0 0 0;
+            flex: 1;
+        }
+
+        .service-details h4 {
+            color: var(--primary);
+            margin: 2rem 0 1.25rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .service-details h4:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .feature-list-detailed {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem 0;
+        }
+
+        .feature-list-detailed li {
+            background: var(--light);
+            margin-bottom: 1rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .feature-list-detailed li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-left-color: var(--accent-light);
+        }
+
+        .feature-list-detailed h5 {
+            color: var(--primary);
+            margin: 0 0 0.75rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .feature-list-detailed i {
+            color: var(--accent);
+        }
+
+        .feature-list-detailed p {
+            margin: 0;
+            color: var(--text-light);
+            line-height: 1.7;
+            font-size: 0.98rem;
+        }
+
+        .service-cta-block {
+            background: linear-gradient(135deg, rgba(22, 96, 136, 0.03), rgba(29, 124, 167, 0.05));
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin: 2.5rem 0 0 0;
+            text-align: center;
+            border: 1px dashed rgba(22, 96, 136, 0.2);
+            transition: var(--transition);
+        }
+
+        .service-cta-block:hover {
+            background: linear-gradient(135deg, rgba(22, 96, 136, 0.05), rgba(29, 124, 167, 0.08));
+            border-color: rgba(22, 96, 136, 0.3);
+        }
+
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1.5rem;
+            padding: 0.9rem 2.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(22, 96, 136, 0.2);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-cta:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--accent-light);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn-cta:hover:before {
+            width: 100%;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(22, 96, 136, 0.3);
+        }
+
+        .btn-cta:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(22, 96, 136, 0.3);
+        }
+
+
+
+        /* Simple Service Cards */
+        .service-card.simple .card-content {
+            padding: 2rem;
+        }
+
+        .service-card.simple h3 {
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card.simple .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem 0;
+        }
+
+        .service-card.simple .feature-list li {
+            padding: 0.5rem 0 0.5rem 2rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .service-card.simple .feature-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .service-card.simple .btn {
+            margin-top: auto;
+            align-self: flex-start;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .service-card:first-child {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .services-section {
+                padding: 4rem 2rem 8rem;
+            }
+            
+            .services-grid {
+                gap: 3rem;
+            }
+            
+            .service-card {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+            
+            .card-content {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .service-details {
+                flex: 1;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Navigation will be injected here by navigation.js -->
+    
+    <!-- Navigation will be injected here by navigation.js -->
+    <div id="navbar-container"></div>
+
+    <header class="services-hero">
+        <div class="container">
+            <h1 class="dynamic-text">Our Services</h1>
+            <p class="hero-subtitle">Transforming Businesses Through Innovation</p>
+        </div>
+    </header>
+
+    <section class="services-section">
+        <div class="container">
+            <div class="section-header" style="text-align: center; margin-bottom: 4rem;" data-aos="fade-up">
+                <h2 style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1.5rem; position: relative; display: inline-block;">
+                    Our Services
+                    <span style="content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: var(--accent); border-radius: 2px;"></span>
+                </h2>
+                <p style="max-width: 700px; margin: 0 auto; color: var(--text-light); font-size: 1.1rem; line-height: 1.7;">
+                    Comprehensive digital solutions tailored to elevate your business in today's competitive landscape.
+                </p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Customer Acquisition Service -->
+                <div class="service-card" data-aos="fade-up">
+                    <div class="card-content">
+                        <div class="service-icon" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 1.5rem;">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Customer Acquisition</h3>
+                        <p class="service-tagline">Strategic face-to-face sales solutions to expand your customer base.</p>
+                        <div class="service-details">
+                            <ul class="feature-list">
+                                <li><strong>B2B Sales:</strong> Targeted outreach to businesses for long-term partnerships</li>
+                                <li><strong>Retail & Direct Sales:</strong> Engaging directly with end consumers</li>
+                                <li><strong>Government Contracts:</strong> Specialized B2G and defense sector solutions</li>
+                                <li><strong>Roadshows:</strong> Mobile sales initiatives to reach wider audiences</li>
+                                <li><strong>Event Marketing:</strong> High-impact presence at trade shows and exhibitions</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-actions" style="display: flex; justify-content: center; margin-top: 1.5rem;">
+                        <a href="contact.html" class="btn btn-primary" style="margin: 0 auto;">Schedule a Consultation</a>
+                    </div>
+                </div>
+
+                <!-- Customer Service Excellence -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-content">
+                        <div class="service-icon" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 1.5rem;">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>Customer Service Excellence</h3>
+                        <p class="service-tagline">Creating lasting brand experiences through exceptional customer care.</p>
+                        <div class="service-details">
+                            <blockquote style="font-style: italic; color: var(--text-light); margin: 1rem 0; padding-left: 1rem; border-left: 3px solid var(--accent);">
+                                "Customer service is the best marketing, it's what differentiates one business from another"
+                            </blockquote>
+                            <ul class="feature-list">
+                                <li><strong>Open Communication:</strong> Transparent and consumer-friendly interactions</li>
+                                <li><strong>Accelerated Growth:</strong> Driving sales through superior service</li>
+                                <li><strong>Brand Advocacy:</strong> Turning customers into loyal brand ambassadors</li>
+                                <li><strong>360° Support:</strong> Omnichannel customer service solutions</li>
+                                <li><strong>Experience Design:</strong> Crafting memorable customer journeys</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-actions" style="display: flex; justify-content: center; margin-top: 1.5rem;">
+                        <a href="contact.html" class="btn btn-primary" style="margin: 0 auto;">Enhance Your Service</a>
+                    </div>
+                </div>
+
+                <!-- Brand Experience -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-content">
+                        <div class="service-icon" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 1.5rem;">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Brand Experience</h3>
+                        <p class="service-tagline">Creating 'Wow' moments that leave lasting impressions.</p>
+                        <div class="service-details">
+                            <p style="color: var(--text-light); margin-bottom: 1rem; font-style: italic;">
+                                Delivering the customer a positive brand experience is at the heart of any experiential campaign.
+                            </p>
+                            <ul class="feature-list">
+                                <li><strong>Immersive Brand Environments</strong> - Multi-sensory experiences that engage</li>
+                                <li><strong>Emotional Connections</strong> - Building relationships beyond transactions</li>
+                                <li><strong>360° Brand Activation</strong> - Seamless online and offline integration</li>
+                                <li><strong>Experiential Marketing</strong> - Creating shareable brand moments</li>
+                                <li><strong>Customer Journey Mapping</strong> - Designing memorable touchpoints</li>
+                            </ul>
+                            <p style="color: var(--text-light); margin-top: 1rem; font-weight: 500;">
+                                It's more than just sales or marketing; it's creating an experience that resonates.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card-actions" style="display: flex; justify-content: center; margin-top: 1.5rem;">
+                        <a href="contact.html" class="btn btn-primary" style="margin: 0 auto;">Elevate Your Brand</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="../scripts/navigation.js"></script>
+    <script src="../scripts/mobile-nav.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Wait for all content to load
+        window.onload = function() {
+            // Hide loader
+            const loader = document.querySelector('.loader-wrapper');
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 300);
+            }
+
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                once: true,
+                disable: 'mobile'
+            });
+
+
+            // Initialize mobile navigation if needed
+            if (window.innerWidth <= 768) {
+                const menuBtn = document.querySelector('.menu-btn');
+                const navLinks = document.querySelector('.nav-links');
+                if (menuBtn && navLinks && typeof initMobileNav === 'function') {
+                    initMobileNav(menuBtn, navLinks);
+                }
+            }
+        };
+    </script>
+    <script src="../src/scripts/mobile-menu.js"></script>
+</body>
+</html>
