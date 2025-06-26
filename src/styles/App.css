@@ -49,6 +49,7 @@ body {
     padding: 0.5rem 0;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
 /* Logo Styles */
@@ -81,69 +82,59 @@ body {
 
 /* Mobile Menu Button */
 .menu-btn {
-    display: none; /* Hidden by default */
-    background: var(--primary);
+    display: none;
+    background: none;
     border: 2px solid var(--primary);
     border-radius: 4px;
-    color: white;
+    color: var(--primary);
     font-size: 1.5rem;
     cursor: pointer;
-    padding: 0.5rem 0.75rem;
+    padding: 0.6rem 1rem; /* Larger touch target */
     z-index: 1001;
     transition: all 0.3s ease;
     align-items: center;
     justify-content: center;
-    margin-left: auto;
-    position: relative;
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
 }
 
 .menu-btn:hover {
-    background: white;
-    color: var(--primary);
-}
-
-/* Show menu button on mobile */
-@media (max-width: 992px) {
-    .menu-btn {
-        display: flex;
-    }
-    
-    /* Hide regular nav links on mobile */
-    .nav-links {
-        display: none;
-    }
-    
-    /* Show nav links when menu is active */
-    .nav-links.active {
-        display: flex;
-    }
+    color: var(--accent);
+    background: rgba(43, 58, 103, 0.05);
 }
 
 /* Navigation Links */
 .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
     margin: 0;
     padding: 0;
     list-style: none;
     align-items: center;
     height: 100%;
-    transition: transform 0.3s ease-in-out;
+}
+
+/* Make links more touch-friendly */
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+}
+
+/* Add touch feedback for links */
+a:active {
+    opacity: 0.8;
 }
 
 .nav-links a {
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: 500;
-    padding: 0.5rem 0.8rem;
+    padding: 0.3rem 0.5rem;
     position: relative;
     transition: all 0.3s ease;
     font-family: 'Inter', sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-size: 0.8rem;
-    display: block;
-    white-space: nowrap;
 }
 
 .nav-links a:hover,
@@ -200,52 +191,149 @@ body {
 @media (max-width: 992px) {
     .menu-btn {
         display: flex;
+        background: none;
+        border: 2px solid var(--primary);
+        border-radius: 4px;
+        color: var(--primary);
+        font-size: 1.5rem;
+        padding: 0.5rem 0.75rem;
+        z-index: 1001;
+        transition: all 0.3s ease;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .menu-btn .fa-bars {
+        color: var(--primary);
+    }
+    
+    .menu-btn:hover {
+        background: rgba(43, 58, 103, 0.1);
+    }
+    
+    .menu-btn:hover .fa-bars {
+        color: var(--primary);
     }
     
     .nav-links {
+        display: flex;
         position: fixed;
         top: 90px;
-        left: 0;
-        right: 0;
-        width: 100%;
-        background: white;
-        padding: 2rem;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        min-width: 100vw !important;
+        margin: 0 !important;
+        padding: 1.5rem 0 !important;
+        background: white !important;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        z-index: 998;
+        z-index: 999;
         flex-direction: column;
-        gap: 1.5rem;
-        height: calc(100vh - 90px);
-        overflow-y: auto;
-        transform: translateX(100%);
-        transition: transform 0.3s ease-in-out;
-        margin: 0;
+        align-items: stretch;
+        gap: 0.5rem;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
     }
     
     .nav-links.active {
+        max-height: 80vh; /* Adjust based on viewport height */
+        opacity: 1;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .nav-links li {
+        width: 100%;
+        margin: 0;
+        padding: 0;
         display: flex;
-        transform: translateX(0);
+        justify-content: center;
     }
     
     .nav-links a {
-        font-size: 1.2rem;
-        margin: 1rem 0;
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+        padding: 15px 20px;
+        font-size: 1.1rem;
+        color: var(--primary) !important;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+        box-sizing: border-box;
+    }
+    
+    .nav-links a:hover,
+    .nav-links a:hover,
+    .nav-links a:focus,
+    .nav-links a.active {
+        background: rgba(43, 58, 103, 0.05) !important;
+        color: var(--primary) !important;
+        transform: none;
+        font-weight: 500;
+    }
+    
+    .nav-links a::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 60%;
+        width: 4px;
+        background: var(--primary);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .nav-links a:hover::before,
+    .nav-links a:focus::before,
+    .nav-links a.active::before {
+        opacity: 1;
     }
 }
 
 /* Navigation Bar */
+/* General navbar styles */
 .navbar {
-  background: white;
-  padding: 0.75rem 0;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  border-bottom: none;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+/* Home page specific navbar */
+.home-navbar .nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px; /* Match the height of regular navbar */
+}
+
+.home-navbar .nav-logo {
+    padding: 10px 0;
+}
+
+.home-navbar .logo-img {
+    height: 60px;
+    width: auto;
+    max-width: 260px;
+    object-fit: contain;
 }
 
 .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -324,21 +412,25 @@ body {
   padding: 0.5rem;
 }
 
-/* Buttons */
+/* Base Button Styles */
 .btn {
+    display: inline-block;
+    padding: 0.875rem 1.75rem; /* Slightly larger padding for better touch */
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px; /* Slightly larger border radius */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight */
+    min-width: 44px; /* Minimum touch target size */
+    min-height: 44px; /* Minimum touch target size */
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem 2.2rem;
-    border-radius: 8px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    text-align: center;
-    cursor: pointer;
-    border: none;
-    font-family: var(--font-primary);
-    font-size: 1rem;
     letter-spacing: 0.5px;
     position: relative;
     overflow: hidden;
@@ -405,7 +497,7 @@ body {
 /* Mobile Navigation */
 @media (max-width: 992px) {
   .menu-btn {
-    display: block;
+    display: flex;
   }
 
   .nav-links {
@@ -998,132 +1090,12 @@ footer .container {
     margin-bottom: 1rem;
 }
 
-/* Mobile Responsive Styles */
-/* ======================== */
-/* Base Mobile Styles */
-@media (max-width: 768px) {
-    /* Typography */
-    h1 { font-size: 2rem; line-height: 1.2; }
-    h2 { font-size: 1.75rem; line-height: 1.25; }
-    h3 { font-size: 1.5rem; line-height: 1.3; }
-    p, li { font-size: 1rem; line-height: 1.6; }
-    
-    /* Layout */
-    .container {
-        padding: 0 1rem;
-    }
-    
-    section {
-        padding: 3rem 0;
-    }
-    
-    /* Navigation */
-    .menu-btn {
-        display: flex;
-    }
-    
-    .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%;
-        max-width: 300px;
-        height: 100vh;
-        background: #ffffff; /* White background for better contrast */
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-        flex-direction: column;
-        padding: 5rem 1.5rem 2rem;
-        transition: all 0.3s ease-in-out;
-        z-index: 1000;
-        overflow-y: auto;
-        opacity: 0;
-        visibility: hidden;
-    }
-    
-    .nav-links.active {
-        right: 0;
-        opacity: 1;
-        visibility: visible;
-    }
-    
-    .nav-links li {
-        width: 100%;
-        text-align: center;
-    }
-    
-    .nav-links a {
-        display: block;
-        padding: 1rem 0.5rem;
-        color: var(--primary); /* Primary color for better contrast */
-        font-weight: 500;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        transition: all 0.2s ease;
-    }
-    
-    .nav-links a:hover,
-    .nav-links a:focus {
-        color: var(--accent);
-        background: rgba(0, 0, 0, 0.02);
-        padding-left: 1rem;
-    }
-    
-    .nav-logo img {
-        height: 40px;
-    }
-    
-    /* Utility Classes */
-    .text-center { text-align: center; }
-    .mobile-only { display: none !important; }
-    .desktop-only { display: block; }
-    
-    /* Mobile Utilities */
-    .mobile-only { display: block !important; }
-    .desktop-only { display: none !important; }
-    
-    /* Full width buttons on mobile */
-    .btn {
-        display: block;
-        width: 100%;
-        margin: 0.5rem 0;
-    }
-    
-    /* Responsive Tables */
-    table, thead, tbody, th, td, tr {
-        display: block;
-    }
-    
-    thead tr {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
-    }
-    
-    tr {
-        margin-bottom: 1rem;
-        border: 1px solid #ddd;
-    }
-    
-    td {
-        border: none;
-        border-bottom: 1px solid #eee;
-        position: relative;
-        padding-left: 50%;
-    }
-    
-    td:before {
-        position: absolute;
-        left: 6px;
-        width: 45%;
-        padding-right: 10px;
-        white-space: nowrap;
-        font-weight: bold;
-    }
-    
-    td:nth-of-type(1):before { content: attr(data-label); }
-    td:nth-of-type(2):before { content: attr(data-label); }
-    td:nth-of-type(3):before { content: attr(data-label); }
-    td:nth-of-type(4):before { content: attr(data-label); }
-    td:nth-of-type(5):before { content: attr(data-label); }
+
+
+
+/* You might want to adjust the main card content padding if things get too tight */
+.service-card .card-content {
+    padding: 1.5rem; /* Adjust as needed */
 }
 
 .custom-section {
@@ -1183,7 +1155,6 @@ footer .container {
   color: var(--text-light);
   font-size: 1rem;
 }
-
 /* Mobile Navigation */
 @media (max-width: 992px) {
   .navbar .container {
@@ -1248,6 +1219,7 @@ footer .container {
     max-width: 100%;
   }
 }
+
 
 /* --- Solutions Page Specific Styles --- */
 

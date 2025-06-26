@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Navigation</title>
+    <link rel="stylesheet" href="src/styles/App.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Navigation Test Page</h1>
+        <p>This is a test page to verify navigation functionality.</p>
+        
+        <!-- Navigation will be injected here -->
+        <div id="navbar-container"></div>
+        
+        <div style="margin-top: 100px;">
+            <h2>Test Content</h2>
+            <p>Scroll down to test fixed navigation.</p>
+            <div style="height: 2000px;"></div>
+        </div>
+    </div>
+
+    <!-- Load navigation script -->
+    <script src="src/scripts/navigation.js"></script>
+    <script>
+        // Debug script loading
+        console.log('Test page script loaded');
+        
+        // Check if navigation was initialized
+        setTimeout(() => {
+            const navLinks = document.querySelector('.nav-links');
+            const menuBtn = document.querySelector('.menu-btn');
+            
+            console.log('Navigation elements:', { navLinks, menuBtn });
+            
+            if (menuBtn) {
+                menuBtn.addEventListener('click', () => {
+                    console.log('Menu button clicked');
+                });
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

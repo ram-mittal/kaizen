@@ -26,29 +26,18 @@
     </style>
 </head>
 <body>
+    <!-- Navigation will be injected here by navigation.js -->
+    <div id="navbar-container"></div>
+
     <div class="loader-wrapper">
         <div class="loader"></div>
     </div>
 
-    <nav class="navbar">
+    <nav class="navbar home-navbar">
         <div class="container nav-container">
-            <a href="index.html" class="nav-logo">
-                <img src="src/assets/images/logo.png" alt="Kaizen Logo" class="logo-img">
+            <a href="index.html" class="nav-logo" style="margin: 0 auto;">
+                <img src="kaizenlogo.jpg" alt="Kaizen Logo" class="logo-img" style="height: 60px; width: auto; max-width: 260px; object-fit: contain; display: block; margin: 0 auto;">
             </a>
-            
-            <button class="menu-btn" aria-label="Toggle menu">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="src/pages/work-with-us.html">Work With Us</a></li>
-                <li><a href="src/pages/career-map.html">Career Map</a></li>
-                <li><a href="src/pages/services.html">Services</a></li>
-                <li><a href="src/pages/solutions.html">Solutions</a></li>
-                <li><a href="src/pages/about.html">About</a></li>
-                <li><a href="src/pages/contact.html">Contact</a></li>
-            </ul>
         </div>
     </nav>
 
@@ -72,9 +61,6 @@
         <section id="success-story" class="fade-in" style="padding: 6rem 0; margin: 4rem 0;">
             <div class="container">
                 <div class="success-story-container" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
-                    <div class="success-image" style="border-radius: 12px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.1);">
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Team collaboration meeting" style="width: 100%; height: auto; display: block; transition: transform 0.3s ease;">
-                    </div>
                     <div class="success-content" style="background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
                         <h2 style="font-size: 2.2rem; color: var(--primary); margin-bottom: 1.5rem; position: relative;">
                             Your Success Story Starts Here
@@ -101,9 +87,10 @@
         </div>
     </footer>
 
+    <!-- Load navigation script -->
+    <script src="src/scripts/navigation.js" defer></script>
+    
+    <!-- Load other scripts -->
     <script type="module" src="src/scripts/main.js"></script>
-    <script src="src/scripts/mobile-menu.js"></script>
-    <script src="../scripts/mobile-nav.js"></script>
-    <script src="../scripts/navigation.js"></script>
 </body>
 </html>
