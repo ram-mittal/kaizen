@@ -81,11 +81,11 @@ body {
 
 /* Mobile Menu Button */
 .menu-btn {
-    display: none;
-    background: none;
+    display: none; /* Hidden by default */
+    background: var(--primary);
     border: 2px solid var(--primary);
     border-radius: 4px;
-    color: var(--primary);
+    color: white;
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0.5rem 0.75rem;
@@ -93,10 +93,30 @@ body {
     transition: all 0.3s ease;
     align-items: center;
     justify-content: center;
+    margin-left: auto;
+    position: relative;
 }
 
 .menu-btn:hover {
-    color: var(--accent);
+    background: white;
+    color: var(--primary);
+}
+
+/* Show menu button on mobile */
+@media (max-width: 992px) {
+    .menu-btn {
+        display: flex;
+    }
+    
+    /* Hide regular nav links on mobile */
+    .nav-links {
+        display: none;
+    }
+    
+    /* Show nav links when menu is active */
+    .nav-links.active {
+        display: flex;
+    }
 }
 
 /* Navigation Links */
@@ -108,19 +128,22 @@ body {
     list-style: none;
     align-items: center;
     height: 100%;
+    transition: transform 0.3s ease-in-out;
 }
 
 .nav-links a {
     color: var(--primary);
     text-decoration: none;
     font-weight: 500;
-    padding: 0.3rem 0.5rem;
+    padding: 0.5rem 0.8rem;
     position: relative;
     transition: all 0.3s ease;
     font-family: 'Inter', sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-size: 0.8rem;
+    display: block;
+    white-space: nowrap;
 }
 
 .nav-links a:hover,
@@ -175,28 +198,32 @@ body {
 
 /* Mobile Styles */
 @media (max-width: 992px) {
+    .menu-btn {
+        display: flex;
+    }
+    
     .nav-links {
-        display: none;
         position: fixed;
-        top: 70px;
+        top: 90px;
         left: 0;
+        right: 0;
         width: 100%;
         background: white;
-        padding: 1.5rem;
+        padding: 2rem;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        z-index: 999;
+        z-index: 998;
         flex-direction: column;
-        gap: 1rem;
-        height: auto;
-        transition: right 0.3s ease-in-out;
-        z-index: 1000;
-        padding: 6rem 2rem 2rem;
+        gap: 1.5rem;
+        height: calc(100vh - 90px);
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
         margin: 0;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
     }
     
     .nav-links.active {
-        right: 0;
+        display: flex;
+        transform: translateX(0);
     }
     
     .nav-links a {
@@ -971,12 +998,132 @@ footer .container {
     margin-bottom: 1rem;
 }
 
-
-
-
-/* You might want to adjust the main card content padding if things get too tight */
-.service-card .card-content {
-    padding: 1.5rem; /* Adjust as needed */
+/* Mobile Responsive Styles */
+/* ======================== */
+/* Base Mobile Styles */
+@media (max-width: 768px) {
+    /* Typography */
+    h1 { font-size: 2rem; line-height: 1.2; }
+    h2 { font-size: 1.75rem; line-height: 1.25; }
+    h3 { font-size: 1.5rem; line-height: 1.3; }
+    p, li { font-size: 1rem; line-height: 1.6; }
+    
+    /* Layout */
+    .container {
+        padding: 0 1rem;
+    }
+    
+    section {
+        padding: 3rem 0;
+    }
+    
+    /* Navigation */
+    .menu-btn {
+        display: flex;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: #ffffff; /* White background for better contrast */
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        padding: 5rem 1.5rem 2rem;
+        transition: all 0.3s ease-in-out;
+        z-index: 1000;
+        overflow-y: auto;
+        opacity: 0;
+        visibility: hidden;
+    }
+    
+    .nav-links.active {
+        right: 0;
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-links a {
+        display: block;
+        padding: 1rem 0.5rem;
+        color: var(--primary); /* Primary color for better contrast */
+        font-weight: 500;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.2s ease;
+    }
+    
+    .nav-links a:hover,
+    .nav-links a:focus {
+        color: var(--accent);
+        background: rgba(0, 0, 0, 0.02);
+        padding-left: 1rem;
+    }
+    
+    .nav-logo img {
+        height: 40px;
+    }
+    
+    /* Utility Classes */
+    .text-center { text-align: center; }
+    .mobile-only { display: none !important; }
+    .desktop-only { display: block; }
+    
+    /* Mobile Utilities */
+    .mobile-only { display: block !important; }
+    .desktop-only { display: none !important; }
+    
+    /* Full width buttons on mobile */
+    .btn {
+        display: block;
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+    
+    /* Responsive Tables */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+    
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    
+    tr {
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+    }
+    
+    td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+    }
+    
+    td:before {
+        position: absolute;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+    }
+    
+    td:nth-of-type(1):before { content: attr(data-label); }
+    td:nth-of-type(2):before { content: attr(data-label); }
+    td:nth-of-type(3):before { content: attr(data-label); }
+    td:nth-of-type(4):before { content: attr(data-label); }
+    td:nth-of-type(5):before { content: attr(data-label); }
 }
 
 .custom-section {
@@ -1036,6 +1183,7 @@ footer .container {
   color: var(--text-light);
   font-size: 1rem;
 }
+
 /* Mobile Navigation */
 @media (max-width: 992px) {
   .navbar .container {
@@ -1100,7 +1248,6 @@ footer .container {
     max-width: 100%;
   }
 }
-
 
 /* --- Solutions Page Specific Styles --- */
 

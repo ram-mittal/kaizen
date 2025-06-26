@@ -22,15 +22,6 @@ const navbar = document.querySelector('.navbar');
 window.addEventListener('scroll', () => {
     const currentScroll = window.scrollY;
     
-    // Add/remove background on scroll
-    if (currentScroll > 50) {
-        navbar.style.backgroundColor = 'rgba(43, 58, 103, 0.98)';
-        navbar.style.boxShadow = '0 4px 25px rgba(0, 0, 0, 0.15)';
-    } else {
-        navbar.style.backgroundColor = 'rgba(43, 58, 103, 0.95)';
-        navbar.style.boxShadow = 'none';
-    }
-    
     // Hide/show navbar on scroll
     if (currentScroll <= 0) {
         navbar.style.transform = 'translateY(0)';
